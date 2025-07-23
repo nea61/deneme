@@ -2,33 +2,82 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Seni Seviyorum</title>
+  <title>Bir Sürpriz Var!</title>
   <style>
     body {
-      background-color: pink;
+      background-color: #ffe6e6;
+      font-family: 'Arial', sans-serif;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #secretMessage {
+      display: none;
+      font-size: 28px;
+      color: #c70039;
+      animation: fadeIn 2s ease-in-out;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      background-color: #ff4d6d;
       color: white;
-      text-shadow: 2px 2px #000;
-      font-size: 40px;
-      flex-direction: column;
+      border: none;
+      cursor: pointer;
     }
-    .heart {
-      font-size: 60px;
-      animation: pulse 1s infinite;
+    button:hover {
+      background-color: #e60039;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
+    #wrong {
+      color: #b30000;
+      margin-top: 15px;
+      display: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div class="heart">❤️</div>
-  <div>Seni Çok Seviyorum Aysu 💖</div>
+
+  <h2>Yıldönümümüz ne zaman? (gg.aa.yyyy)</h2>
+  <input type="text" id="answer" placeholder="örn: 02.04.2021">
+  <button onclick="checkAnswer()">Gönder</button>
+
+  <div id="wrong">❌ Yanlış cevap, tekrar dene 🥲</div>
+
+  <div id="secretMessage">
+    <h1>💖 Seni Çok Seviyorum Aysu! 💖</h1>
+    <p>Bu özel günü hiç unutmadım. Hep seninleyim.</p>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById("answer").value.trim();
+      const correct = "02.04.2021";
+      if (input === correct) {
+        document.getElementById("secretMessage").style.display = "block";
+        document.getElementById("wrong").style.display = "none";
+      } else {
+        document.getElementById("secretMessage").style.display = "none";
+        document.getElementById("wrong").style.display = "block";
+      }
+    }
+  </script>
+
 </body>
 </html>
+
