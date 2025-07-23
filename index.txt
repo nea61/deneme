@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Seni Seviyorum</title>
+  <style>
+    body {
+      background-color: pink;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-shadow: 2px 2px #000;
+      font-size: 40px;
+      flex-direction: column;
+    }
+    .heart {
+      font-size: 60px;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart">❤️</div>
+  <div>Seni Çok Seviyorum Aysu 💖</div>
+</body>
+</html>
