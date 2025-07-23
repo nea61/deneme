@@ -2,31 +2,44 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Bir Sürpriz Var!</title>
+  <title>Sürpriz Var</title>
   <style>
-    body {
-      background-color: #ffe6e6;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       font-family: 'Arial', sans-serif;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
+      align-items: center;
+      background-color: black;
+      color: white;
+    }
+
+    #girisEkrani {
+      z-index: 2;
+      position: absolute;
       text-align: center;
+      background-color: rgba(0,0,0,0.6);
+      padding: 40px;
+      border-radius: 12px;
     }
-    #secretMessage {
-      display: none;
-      font-size: 28px;
-      color: #c70039;
-      animation: fadeIn 2s ease-in-out;
-    }
+
     input {
       padding: 10px;
       font-size: 16px;
       border-radius: 8px;
       border: 1px solid #ccc;
       margin-top: 10px;
+      width: 200px;
     }
+
     button {
       padding: 10px 20px;
       margin-top: 10px;
@@ -37,42 +50,101 @@
       border: none;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #e60039;
     }
+
     #wrong {
-      color: #b30000;
+      color: #f99;
       margin-top: 15px;
       display: none;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+
+    #icerik {
+      display: none;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #yazi {
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 32px;
+      text-shadow: 2px 2px 8px black;
+    }
+
+    .slider {
+      position: absolute;
+      width: 500%;
+      height: 100%;
+      display: flex;
+      animation: slide 20s infinite linear;
+    }
+
+    .slide {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    @keyframes slide {
+      0%   { transform: translateX(0); }
+      20%  { transform: translateX(0); }
+      25%  { transform: translateX(-100vw); }
+      45%  { transform: translateX(-100vw); }
+      50%  { transform: translateX(-200vw); }
+      70%  { transform: translateX(-200vw); }
+      75%  { transform: translateX(-300vw); }
+      95%  { transform: translateX(-300vw); }
+      100% { transform: translateX(0); }
     }
   </style>
 </head>
 <body>
 
-  <h2>Yıldönümümüz ne zaman? (gg.aa.yyyy)</h2>
-  <input type="text" id="answer" placeholder="örn: 02.04.2021">
-  <button onclick="checkAnswer()">Gönder</button>
+  <div id="girisEkrani">
+    <h2>Yıldönümümüz ne zaman? (gg.aa.yyyy)</h2>
+    <input type="text" id="answer" placeholder="">
+    <br>
+    <button onclick="checkAnswer()">Gönder</button>
+    <div id="wrong">❌ Yanlış cevap, tekrar dene 🥲</div>
+  </div>
 
-  <div id="wrong">❌ Yanlış cevap, tekrar dene 🥲</div>
-
-  <div id="secretMessage">
-    <h1>💖 Seni Çok Seviyorum Aysu! 💖</h1>
-    <p>Bu özel günü hiç unutmadım. Hep seninleyim.</p>
+  <div id="icerik">
+    <div class="slider">
+      <div class="slide" style="background-image: url('https://drive.google.com/uc?export=view&id=147Oj5vKi8JvDv54792AZVeIgSgcp9bDQ');"></div>
+      <div class="slide" style="background-image: url('https://drive.google.com/uc?export=view&id=1M9ffLnPxBW8MvQE3sbfupRf2KRKOjUVe');"></div>
+      <div class="slide" style="background-image: url('https://drive.google.com/uc?export=view&id=13ypAY2-z13KucmUVlQds1CSWUuEVz0sQ');"></div>
+      <div class="slide" style="background-image: url('https://drive.google.com/uc?export=view&id=1xfoi4w2lESS7Rk8Z13K7JYhoQnI3i2g_');"></div>
+      <div class="slide" style="background-image: url('https://drive.google.com/uc?export=view&id=1k7fKo5hZmyyIDTzWMfuVcn_BYKjWYPM7');"></div>
+    </div>
+    <div id="yazi">
+      💖 Seni Çok Seviyorum! 💖<br>
+      Bu sayfa sadece senin için hazırlandı.
+    </div>
   </div>
 
   <script>
     function checkAnswer() {
       const input = document.getElementById("answer").value.trim();
-      const correct = "02.04.2021";
+      const correct = "02.04.2021"; // Burayı değiştirmen gerekmez
       if (input === correct) {
-        document.getElementById("secretMessage").style.display = "block";
-        document.getElementById("wrong").style.display = "none";
+        document.getElementById("girisEkrani").style.display = "none";
+        document.getElementById("icerik").style.display = "flex";
       } else {
-        document.getElementById("secretMessage").style.display = "none";
         document.getElementById("wrong").style.display = "block";
       }
     }
@@ -80,4 +152,3 @@
 
 </body>
 </html>
-
